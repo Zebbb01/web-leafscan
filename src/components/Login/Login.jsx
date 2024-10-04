@@ -98,11 +98,11 @@ const Login = ({ setUser }) => {
                 />
               </div>
               {errors.password && <span>{errors.password}</span>}
-              <button type='submit' className='btn btn-success'>Login</button>
+              <button type='submit' className='btn'>Login</button>
             </div>
             <div className='login'>
               <p>Don't have an account?</p>
-              <Link to='/signup' className='btn btn-primary'>Sign Up</Link>
+              <Link to='/signup' className='btn'>Sign Up</Link>
             </div>
           </form>
         )}

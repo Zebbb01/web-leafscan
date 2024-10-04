@@ -42,6 +42,10 @@
     cursor: pointer;
 }
 
+.inputGroup button:hover {
+    background-color: #0c9aa1;
+}
+
 .loginAddUser h1 {
     text-align: center;
     font-weight: bold;
@@ -63,10 +67,8 @@
 .login .btn {
     margin-top: 20px;
     width: 100%;
-    background-color: #D2DE32;
     border: none;
     border-radius: 5px;
-    color: #016A70;
     cursor: pointer;
 }
 

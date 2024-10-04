@@ -37,7 +37,7 @@ body {
 }
 
 body.authBackground {
-    background-color: Beige; /* Dark blue-grey for login and signup pages */
+    background-color: Beige; /* background of editprofile */
 }
 
 .update-container{
@@ -90,11 +90,21 @@ a {
 .btn:hover,
 .btn-get-started:hover,
 .dropdown-toggle:hover {
-  background-color: aliceblue;;
-  color: #016A70;
+  background-color: rgb(179, 219, 99);
   transition: 0.3s;
 }
 
+input {
+        margin: 5px 0;
+        padding: 10px;
+        border: none;
+        border-radius: 5px;
+        background-color: #ffffff;
+        color: #016A70;
+        box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.65);
+        width: 100%;
+        box-sizing: border-box;
+}
 
 /* ----- media queries to become responsive ----- */
 @media (max-width: 1000px) {

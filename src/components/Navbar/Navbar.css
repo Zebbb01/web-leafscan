@@ -1,17 +1,20 @@
-nav{
-    width: 100%;
-    /* ---- Hide the backgroud kung gusto kag naay style ----*/
-    background: rgba(154,205,50, 0.5);
-    
-    color: #ffffff;
-    padding: 4px 0;
-    position: fixed;
-    top: 0;
-    left: 0;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    z-index: 10;
+/* Regular Navbar */
+nav {
+  width: 100%;
+  background: rgba(154,205,50, 0.5); /* Default with opacity */
+  color: #ffffff;
+  padding: 4px 0;
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  z-index: 10;
+}
+/* Navbar with full opacity */
+.full-opacity-nav {
+  background: rgba(154,205,50, 1) !important; /* Fully opaque */
 }
 nav ul li a:hover {
   color: rgb(12, 112, 37); /* Yellow text color on hover */
@@ -22,10 +25,9 @@ nav ul li a:hover {
 }
 .profile_icon {
   width: 30px; /* Increased size for better visibility */
-  height: 30px; /* Ensure it's a square */
+  height: 20px; /* Ensure it's a square */
   border-radius: 50%; /* Keep it circular */  
   object-fit: cover; /* Ensures the image fills the circle */
-  border: 0.5px solid white; /* Optional: add a border for better visibility */
   background-color: #f1f1f1; /* Optional: fallback background */
 }
 
@@ -42,6 +44,15 @@ nav ul li{
 .menu-icon{
     display: none;
 }
+.hide-mobile-menu {
+  right: -200px; /* When mobile menu is hidden */
+}
+
+.show-mobile-menu {
+  right: 0; /* When mobile menu is visible */
+  transition: 0.5s;
+}
+
 /* Adjust these styles as needed to match your design */
 .dropdown {
     position: relative;
@@ -79,7 +90,7 @@ nav ul li{
 /* ----- media queries to become responsive ----- */
 @media (max-width: 1000px){
     .logo{
-        width: 140px;
+        width: 90px;
     }
     nav ul li{
         margin: 10px 15px;
@@ -87,16 +98,16 @@ nav ul li{
 }
 @media (max-width: 844px){
     nav{
-        padding: 15px 0;
+        padding: 10px 0;
     }
-    nav ul{
+    nav ul {
         position: fixed;
         top: 0;
         right: 0;
         bottom: 0;
         background: yellowgreen;
         z-index: -1;
-        width: 200px;
+        width: 250px;
         padding-top: 70px;
         transition: 0.5s;
     }
@@ -109,13 +120,25 @@ nav ul li{
         width: 30px;
         cursor: pointer;
     }
-    .hide-mobile-menu{
-        right: -200px;
+    
+    .hide-mobile-menu {
+      right: -200px; /* When mobile menu is hidden */
+      visibility: hidden;
+      opacity: 0;
+      transition: right 0.5s, opacity 0.5s ease;
     }
+    
+    .show-mobile-menu {
+      right: 0; /* When mobile menu is visible */
+      visibility: visible;
+      opacity: 1;
+      transition: right 0.5s, opacity 0.5s ease;
+    }
+    
     .dropdown-menu {
         left: -55px;
         bottom: 0;
-        right: 0;  /* Ensure dropdown menu stays aligned */
+        right: 7;  /* Ensure dropdown menu stays aligned */
         
       }
       .dropdown-menu {
@@ -129,8 +152,11 @@ nav ul li{
       .dropdown-item {
         position: relative;
         color: #f1f1f1;
-        padding: 16px 16px;
+        padding: 10px 16px;
         text-decoration: none;
         display: block;
       }
+      .logo {
+        width: 80px;
+    }
 }

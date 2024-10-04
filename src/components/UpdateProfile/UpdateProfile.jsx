@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import './UpdateProfile.css';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigate, useParams, useLocation } from 'react-router-dom';
 import axios from 'axios';
 import { toast, Zoom } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -10,8 +10,9 @@ import UpdateProfileValidation from './UpdateProfileValidation';
 
 const UpdateProfile = ({ setUser }) => {
   const { id } = useParams();
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
+  const location = useLocation();
+  const [name, setName] = useState(location.state?.name || ''); // Get name from state
+  const [email, setEmail] = useState(location.state?.email || ''); // Get email from state
   const [currentPassword, setCurrentPassword] = useState('');
   const [newPassword, setNewPassword] = useState('');
   const [loading, setLoading] = useState(false);
@@ -20,18 +21,21 @@ const UpdateProfile = ({ setUser }) => {
   const [newPasswordVisible, setNewPasswordVisible] = useState(false);
 
   useEffect(() => {
-    setLoading(true);
-    axios.get(`http://localhost:5000/user/${id}`)
-      .then(res => {
-        setName(res.data.name);
-        setEmail(res.data.email);
-        setLoading(false);
-      })
-      .catch(err => {
-        console.error(err);
-        setLoading(false);
-      });
-  }, [id]);
+    if (!location.state) {
+      // If state is not available, fetch user data
+      setLoading(true);
+      axios.get(`api/user/${id}`)
+        .then(res => {
+          setName(res.data.name);
+          setEmail(res.data.email);
+          setLoading(false);
+        })
+        .catch(err => {
+          console.error(err);
+          setLoading(false);
+        });
+    }
+  }, [id, location.state]);
 
   const navigate = useNavigate();
 
@@ -60,7 +64,7 @@ const UpdateProfile = ({ setUser }) => {
 
     if (currentPassword) {
       try {
-        const response = await axios.post('http://localhost:5000/check-password', {
+        const response = await axios.post('api/check-password', {
           id,
           password: currentPassword
         });
@@ -84,7 +88,7 @@ const UpdateProfile = ({ setUser }) => {
         }
       } catch (error) {
         console.error('Error checking password:', error);
-        toast.error('Failed to verify current password', {
+        toast.error('Wrong password', {
           position: "top-center",
           autoClose: 2000,
           hideProgressBar: false,
@@ -165,7 +169,7 @@ const UpdateProfile = ({ setUser }) => {
         <h1>Edit Profile</h1>
         <form onSubmit={handleSubmit}>
           <div className='mb-2'>
-            <label htmlFor="name">Name</label>
+            <label htmlFor="name">Name:</label>
             <input
               type="text"
               id="name"
@@ -176,7 +180,7 @@ const UpdateProfile = ({ setUser }) => {
             />
           </div>
           <div className='mb-2'>
-            <label htmlFor="email">Email</label>
+            <label htmlFor="email">Email:</label>
             <input
               type="email"
               id="email"
@@ -187,7 +191,7 @@ const UpdateProfile = ({ setUser }) => {
             />
           </div>
           <div className='mb-2'>
-            <label htmlFor="currentPassword">Current Password</label>
+            <label htmlFor="currentPassword">Current Password:</label>
             <div className='passwordWrapper'>
               <input
                 type={currentPasswordVisible ? 'text' : 'password'}
@@ -206,7 +210,7 @@ const UpdateProfile = ({ setUser }) => {
             {errors.currentPassword && <span>{errors.currentPassword}</span>}
           </div>
           <div className='mb-2'>
-            <label htmlFor="newPassword">New Password</label>
+            <label htmlFor="newPassword">New Password:</label>
             <div className='passwordWrapper'>
               <input
                 type={newPasswordVisible ? 'text' : 'password'}
@@ -225,7 +229,7 @@ const UpdateProfile = ({ setUser }) => {
             {errors.newPassword && <span>{errors.newPassword}</span>}
           </div>
           <div className='btn-update'>
-            <button type="submit" className='btn btn-info'>Update</button>
+            <button type="submit" className='btn'>Update</button>
             <button type="button" className='btn btn-secondary' onClick={handleCancel}>Cancel</button>
           </div>
         </form>

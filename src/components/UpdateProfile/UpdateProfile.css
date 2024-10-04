@@ -1,6 +1,5 @@
-
 .pf-update {
-  margin: 20px auto; /* Reduced margin for mobile */
+  margin: 100px auto; /* Reduced margin for mobile */
   width: 90%; /* Full width on smaller screens */
   max-width: 450px; /* Keep max width for larger screens */
   background-color: #FFFFDD; /* Dark background */
@@ -12,6 +11,7 @@
 
 .pf-update label {
   color: #016A70; /* Light grey labels */
+  margin: 10px 0;
 }
 
 .pf-update h1 {
@@ -21,115 +21,28 @@
   text-transform: uppercase;
 }
 
-.passwordWrapper {
-  position: relative;
-  width: 100%;
-}
 
-.passwordWrapper input {
+.update-container .pf-update input {
+  margin: 10px 0;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  background-color: #ffffff;
+  color: #016A70;
+  box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.65);
   width: 100%;
+  box-sizing: border-box;
 }
 
 .up-eyeIcon {
   position: absolute;
-  right: 10px;
-  top: 40%;
-  transform: translateY(-50%);
+  right: 10px; /* Adjust right position */
+  top: 50%; /* Center vertically */
+  transform: translateY(-50%); /* Center vertically */
   cursor: pointer;
   color: #016A70;
-}
-
-
-.form-control {
-  width: 100%;
-  padding: 10px;
-  margin-top: 5px;
-  margin-bottom: 15px;
-  border: 1px solid #555; /* Dark grey border */
-  border-radius: 5px;
-  background-color: #ffffff; /* Dark input background */
-  color: #016A70; /* White text */
-}
-
-.form-control::placeholder {
-  color: #888; /* Light grey placeholder */
-}
-
-.btn-update .btn-info {
-  background-color: #A2C579; /* Blue button */
-  border: none;
-  padding: 10px 20px;
-  color: #ffffff;
-  border-radius: 5px;
-  cursor: pointer;
-}
-
-.btn-update .btn-info:hover {
-  background-color: #016A70; /* Darker blue on hover */
-  color: white;
-}
-
-.btn-update {
-  display: flex;
-  justify-content: space-between; /* Adjust this as needed */
-}
-
-.btn-update .btn-secondary {
-  background-color: rgb(233, 113, 58); 
-  border: none;
-  padding: 10px 20px;
-  color: #ffffff;
-  border-radius: 5px;
-  cursor: pointer;
-  margin-left: 10px; /* Add some space between buttons */
-}
-
-.btn-update .btn-secondary:hover {
-  background-color: #f5221a; /* Darker grey on hover */
-  color: white;
-}
-
-
-.mb-2 span {
-  color: red;
-  padding-left: 5px;
-}
-
-/* Modal styles */
-.modal-overlay {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: fixed;
-  z-index: 1000;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.4);
-}
-
-.modal-content {
-  background-color: #2c2c2c;
-  margin: auto;
-  padding: 20px;
-  border: 1px solid #888;
-  width: 80%;
-  max-width: 500px;
-  border-radius: 10px;
-  position: relative;
-  color: #ffffff;
-}
-
-.close-button {
-  position: absolute;
-  top: 10px;
-  right: 20px;
-  background: none;
-  border: none;
-  font-size: 20px;
-  cursor: pointer;
-  color: #ffffff;
+  width: 24px; /* Set a default width */
+  height: 24px; /* Set a default height */
 }
 
 /* Media Queries for responsiveness */
@@ -139,9 +52,6 @@
     margin: 10px;
   }
 
-  .form-control {
-    padding: 8px;
-  }
 
   .btn-update .btn-info .btn-secondary {
     width: 100%;
@@ -149,14 +59,52 @@
     margin-top: 10px;
   }
 
-  .modal-content {
-    padding: 15px;
-    width: 90%;
+  .up-eyeIcon {
+    width: 20px; /* Adjust size for smaller screens */
+    height: 20px; /* Adjust size for smaller screens */
+    right: 8px; /* Slightly adjust position for smaller screens */
   }
+}
 
-  .close-button {
-    font-size: 18px;
-    top: 5px;
-    right: 10px;
-  }
+.form-control {
+  width: 100%;
+  padding: 10px;
+  margin-top: 5px;
+  margin-bottom: 15px;
+  border: 1px solid #555; /* Dark grey border */
+  border-radius: 5px;
+  background-color: #ffffff; /* Default input background */
+  color: #016A70; /* Default text color */
+}
+
+.form-control:disabled {
+  background-color: #f0f0f0; /* Light gray background for disabled */
+  color: #888; /* Darker gray text for disabled */
+  cursor: not-allowed; /* Indicate that it's not clickable */
+}
+
+.form-control::placeholder {
+  color: #888; /* Light grey placeholder */
+}
+
+
+.btn-update {
+  display: flex;
+  justify-content: space-between; /* Adjust this as needed */
+  margin-top: 20px;
+}
+
+.btn-update .btn-secondary {
+  background-color: #f5221a; /* hover */
+  color: #ffffff;
+}
+
+.btn-update .btn-secondary:hover {
+  background-color: rgb(233, 113, 58);
+  color: white;
+}
+
+.mb-2 span {
+  color: red;
+  padding-left: 5px;
 }

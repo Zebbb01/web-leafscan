@@ -28,9 +28,7 @@
     cursor: pointer;
   }
   
-  .upload-button {
-    background-color: yellowgreen;
-    color: white;
+  .upload-container .btn {
     padding: 10px 20px;
     border: none;
     border-radius: 4px;

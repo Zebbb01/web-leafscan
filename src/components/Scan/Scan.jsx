@@ -26,26 +26,28 @@ const Scan = () => {
 
   const handleScan = async () => {
     if (!image) return;
-
+  
     setLoading(true);
-
+  
     try {
-      const base64Response = await fetch(image);
-      const blob = await base64Response.blob();
-
+      const response = await fetch(image);
+      const blob = await response.blob();
       const formData = new FormData();
       formData.append('image', blob, 'image.jpg');
-
-      const response = await fetch('/api/upload_image', {
+  
+      const uploadResponse = await fetch('/api/upload_image', {
         method: 'POST',
         body: formData,
-      }, { withCredentials: true });
-
-      if (!response.ok) {
-        throw new Error(`HTTP error! Status: ${response.status}`);
+        headers: {
+          'Accept': 'application/json',
+        },
+      });
+  
+      if (!uploadResponse.ok) {
+        throw new Error(`HTTP error! Status: ${uploadResponse.status}`);
       }
-
-      const data = await response.json();
+  
+      const data = await uploadResponse.json();
       setDisease(data.disease);
       setConfidence(data.confidence ? (data.confidence * 100).toFixed(2) : null);
       setPrevention(data.prevention);
@@ -56,6 +58,7 @@ const Scan = () => {
       setLoading(false);
     }
   };
+  
 
   const handleChangeImage = () => {
     setImage(null);
@@ -102,7 +105,7 @@ const Scan = () => {
             Drag and drop an image or <span className="browse-link">browse to upload.</span>
           </label>
           <p>File must be JPEG, JPG, or PNG and up to 40MB</p>
-          <button className="upload-button" onClick={() => document.getElementById('fileUpload').click()}>Upload your Photo</button>
+          <button className="btn" onClick={() => document.getElementById('fileUpload').click()}>Upload your Photo</button>
         </div>
       )}
     </div>

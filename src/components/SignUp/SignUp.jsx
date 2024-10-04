@@ -180,11 +180,11 @@ const SignUp = () => {
                 />
               </div>
               
-              <button type='submit' className='btn btn-success'>Sign Up</button>
+              <button type='submit' className='btn'>Sign Up</button>
             </div>
             <div className='logins'>
               <p>Already have an account?</p>
-              <Link to='/' className='btn btn-primary'>Login</Link>
+              <Link to='/' className='btn'>Login</Link>
             </div>
           </form>
         )}
